@@ -1,10 +1,13 @@
-import App from './App.svelte';
+import App from "./App.svelte";
 
-const app = new App({
-	target: document.body,
-	props: {
-		name: 'world'
-	}
-});
+(window as any).renderPaneViewCurrentOrg = (containerId: string) => {
+  new App({
+    target: document.getElementById(containerId),
+  });
+};
 
-export default app;
+(window as any).unmountPaneViewCurrentOrg = (containerId: string) => {
+  new App({
+    target: document.getElementById(containerId),
+  }).$destroy();
+};

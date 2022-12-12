@@ -1,8 +1,13 @@
 import App from "./App.svelte";
+import type { CurrentOrganization } from "./types";
 
-(window as any).renderPaneViewCurrentOrg = (containerId: string) => {
+(window as any).renderPaneViewCurrentOrg = (
+  containerId: string,
+  selectedOrganization: CurrentOrganization
+) => {
   new App({
     target: document.getElementById(containerId),
+    props: { selectedOrganization },
   });
 };
 

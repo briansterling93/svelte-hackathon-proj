@@ -8,9 +8,9 @@
   import { organization } from "./store";
   import type { CurrentOrganization } from "./types";
 
-  onMount(() => {
-    getOrganizationData("", "");
-  });
+  // onMount(() => {
+  //   getOrganizationData("", "");
+  // });
 
   const setSelectedOrganization = () => {
     organization.set(selectedOrganization);

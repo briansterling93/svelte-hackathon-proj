@@ -33,6 +33,7 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    overflow-x: hidden;
     text-align: start;
     width: 100%;
     margin-top: 40px;

@@ -6,6 +6,7 @@ export function getPlanBadgeColor(plan: string): string {
     case "Premium":
       return "professional-premium";
     case null:
+    case undefined:
       return "inactive";
     default:
       return "other";

@@ -6,9 +6,10 @@
   import WebPlatform from "./components/WebPlatform/WebPlatform.svelte";
   import ContentLibraryPlatform from "./components/ContentLibraryPlatform/ContentLibraryPlatform.svelte";
   import Other from "./components/Other/Other.svelte";
+  import type { CurrentOrganization } from "../../types";
 
-  organization.subscribe((v) => {
-    v;
+  organization.subscribe((value) => {
+    value;
   });
 </script>
 
@@ -24,6 +25,9 @@
 </main>
 
 <style>
+  main {
+    overflow-x: hidden;
+  }
   .cards {
     display: flex;
     align-items: center;

@@ -55,43 +55,44 @@
 <style>
   .main {
     background-color: rgb(255, 255, 255);
-    border-radius: 0.5rem;
+    border-radius: 2px;
     box-shadow: 4px 4px 4px rgb(245, 245, 245);
     display: flex;
     justify-content: flex-start;
-    padding: 2rem;
-    width: 90%;
+    padding: 3rem;
+    width: 95%;
   }
 
   .header {
     font-size: 1.125rem;
     font-weight: 700;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
   }
 
   .field {
     display: flex;
     flex-direction: column;
-    min-width: 700px;
+    min-width: 900px;
   }
 
   .fields-row {
     display: flex;
     flex-direction: row;
     margin-top: 2rem;
-    width: 700px;
+    width: 900px;
   }
 
   .field-title {
     font-size: 12px;
-    font-weight: 500;
+    font-weight: 600;
+    opacity: 0.9;
     text-transform: uppercase;
   }
 
   .field-data {
-    padding-top: 10px;
+    padding-top: 15px;
     color: #595959;
     font-size: 16px;
-    opacity: 0.8;
+    opacity: 0.9;
   }
 </style>

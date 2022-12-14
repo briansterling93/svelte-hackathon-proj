@@ -46,3 +46,5 @@ import type { CurrentOrganization } from "../../types";
 // };
 
 export const organization = writable<CurrentOrganization | null>(null);
+export const accessToken = writable<string>("");
+export const orgUUID = writable<string>("");

@@ -7,8 +7,18 @@ import sveltePreprocess from "svelte-preprocess";
 import typescript from "@rollup/plugin-typescript";
 import styles from "rollup-plugin-styles";
 import outputManifest from "rollup-plugin-output-manifest";
+import replace from "rollup-plugin-replace";
+import { config } from "dotenv";
 
 const production = !process.env.ROLLUP_WATCH;
+const configToReplace = {
+  "process.env.AUTH_TOKEN": "''",
+};
+try {
+  for (const [key, v] of Object.entries(config().parsed)) {
+    configToReplace[`process.env.${key}`] = `'${v}'`;
+  }
+} catch (e) {}
 
 function serve() {
   let server;
@@ -38,7 +48,7 @@ function serve() {
 export default {
   input: "src/main.ts",
   output: {
-    sourcemap: true,
+    sourcemap: !production,
     format: "iife",
     name: "app",
     file: "public/build/bundle.js",
@@ -49,8 +59,8 @@ export default {
       compilerOptions: {
         // enable run-time checks when not in production
         dev: !production,
+        // customElement: true
       },
-      customElements: true,
     }),
     // we'll extract any component CSS out into
     // a separate file - better for performance
@@ -94,6 +104,11 @@ export default {
           [`${k}.js`]: `/build/${v}`,
         },
       }),
+    }),
+    replace({
+      include: ["src/**/*.ts", "src/**/*.svelte"],
+      preventAssignment: true,
+      values: configToReplace,
     }),
   ],
   watch: {

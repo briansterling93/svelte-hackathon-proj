@@ -32,7 +32,9 @@
         <div class="field">
           <div class="field-title">Joined</div>
           <div class="field-data">
-            {formatTimeStamp(currentOrg.vodStartDate) || "N/A"}
+            {currentOrg.vodStartDate
+              ? formatTimeStamp(currentOrg.vodStartDate)
+              : "N/A"}
           </div>
         </div>
       </div>

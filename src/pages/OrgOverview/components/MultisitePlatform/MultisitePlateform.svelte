@@ -33,7 +33,9 @@
         <div class="field">
           <div class="field-title">Joined</div>
           <div class="field-data">
-            {formatTimeStamp(currentOrg.multisiteStartDate) || "N/A"}
+            {currentOrg.multisiteStartDate
+              ? formatTimeStamp(currentOrg.multisiteStartDate)
+              : "N/A"}
           </div>
         </div>
       </div>

@@ -1,22 +1,16 @@
 <svelte:options tag="org-overview" />
 
 <script lang="ts">
-  import { onMount } from "svelte/types/runtime/internal/lifecycle";
   import { getOrganizationData } from "./api";
-  export let selectedOrganization: CurrentOrganization;
+  export let selectedOrganization: { currentOrg: string; authToken: string };
   import OrgOverview from "./pages/OrgOverview/org-overview.svelte";
-  import { organization } from "./store";
-  import type { CurrentOrganization } from "./types";
+  import { mockedOrg, organization } from "./store";
 
-  // onMount(() => {
-  //   getOrganizationData("", "");
-  // });
-
-  const setSelectedOrganization = () => {
-    organization.set(selectedOrganization);
-  };
-
-  setSelectedOrganization();
+  getOrganizationData(
+    selectedOrganization.currentOrg,
+    selectedOrganization.authToken
+  );
+  organization.set(mockedOrg); //needed in order to properly update props (uuid, access token) passed from main repo
 </script>
 
 <main>

@@ -1,23 +1,22 @@
-import { organization, accessToken, orgUUID } from "../store";
+import { organization } from "../store";
+import axios from "axios";
 
-export const getOrganizationData = async (
-  uuid: string,
-  accessToken: string
-) => {
-  const response = await fetch(
-    `'https://int-central.resi.io/api_v2.svc/${uuid}`,
-    {
-      headers: {
-        method: "GET",
-        authorization: `X-Bearer ${accessToken}`,
-      },
-    }
-  );
+export const getOrganizationData = async (uuid: string, token: string) => {
+  try {
+    const res = await axios.get(
+      `https://int-central.resi.io/api_v2.svc/customers/${uuid}`,
+      { withCredentials: true },
+      {
+        headers: {
+          method: "GET",
+          authorization: `X-Bearer ${token}`,
+        },
+      }
+    );
+    console.log({ res }, "Svelte Microfrontend Call");
 
-  return response.json();
-  //   return organization.set(await response.json());
+    organization.set(res.data);
+  } catch (error) {
+    console.log(error);
+  }
 };
-
-// export function getOrganizationData() {
-//   console.log("mount");
-// }

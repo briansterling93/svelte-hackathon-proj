@@ -1,5 +1,4 @@
 <script lang="ts">
-  export let allowedSubtitles: boolean;
   import { is16ChannelAudio } from "../../derivables/16ChannelAudio";
 </script>
 

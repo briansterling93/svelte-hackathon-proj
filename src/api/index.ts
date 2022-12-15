@@ -1,22 +1,24 @@
 import { organization } from "../store";
-import axios from "axios";
 
 export const getOrganizationData = async (uuid: string, token: string) => {
   try {
-    const res = await axios.get(
+    const res = await fetch(
       `https://int-central.resi.io/api_v2.svc/customers/${uuid}`,
-      { withCredentials: true },
       {
         headers: {
-          method: "GET",
           authorization: `X-Bearer ${token}`,
         },
       }
     );
-    console.log({ res }, "Svelte Microfrontend Call");
 
-    organization.set(res.data);
+    if (!res.ok)
+      throw new Error(
+        `Failed to get organization data: ${res.status} ${res.statusText}`
+      );
+
+    const json = await res.json();
+    organization.set(json);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

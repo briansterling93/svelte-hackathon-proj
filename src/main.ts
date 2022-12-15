@@ -1,19 +1,19 @@
 import App from "./App.svelte";
-import type { CurrentOrganization } from "./types";
 
 (window as any).renderPaneViewCurrentOrg = (
   containerId: string,
-  selectedOrganization: CurrentOrganization
-
-  // props = {
-  //   //resi UUID to test with API call..
-  //   currentOrg: "285e1ddf-9337-479b-b717-b1ccef824fa6",
-  //   accessToken: "resi-access-token"
-  // }
+  props?: { authToken: string; currentOrg: string }
 ) => {
+  const authToken = process.env.AUTH_TOKEN; // Update env with your refreshed token
+  const currentOrg = "6dcebe46-41c1-49f9-a318-8081d14394e3"; // Resi
+
+  if (!props) props = { authToken, currentOrg };
+  if (!props.authToken) props.authToken = authToken;
+  if (!props.currentOrg) props.currentOrg = currentOrg;
+
   new App({
     target: document.getElementById(containerId),
-    props: { selectedOrganization },
+    props,
   });
 };
 

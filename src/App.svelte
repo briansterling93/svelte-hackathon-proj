@@ -1,14 +1,14 @@
-<svelte:options tag="org-overview" />
-
 <script lang="ts">
   import { getOrganizationData } from "./api";
-  export let selectedOrganization: { currentOrg: string; authToken: string };
   import OrgOverview from "./pages/OrgOverview/org-overview.svelte";
   import { mockedOrg, organization } from "./store";
 
+  export let authToken: string;
+  export let currentOrg: string;
+  
   getOrganizationData(
-    selectedOrganization.currentOrg,
-    selectedOrganization.authToken
+    currentOrg,
+    authToken
   );
   organization.set(mockedOrg); //needed in order to properly update props (uuid, access token) passed from main repo
 </script>

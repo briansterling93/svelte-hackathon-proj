@@ -1,7 +1,5 @@
 <script lang="ts">
   import { isStatusActive } from "../../derivables/status";
-
-  export let status: boolean;
 </script>
 
 <div class="main">
